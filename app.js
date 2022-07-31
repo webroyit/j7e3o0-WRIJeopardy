@@ -4,7 +4,7 @@ const scoreDisplay = document.getElementById("score");
 const jeopardyCategories = [
     {
         genre: "WHO",
-        question: [
+        questions: [
             {
                 question: "Who are you?",
                 answers: ["Water, Fire"],
@@ -27,7 +27,7 @@ const jeopardyCategories = [
     },
     {
         genre: "WHERE",
-        question: [
+        questions: [
             {
                 question: "Where are you?",
                 answers: ["Home, Work"],
@@ -50,7 +50,7 @@ const jeopardyCategories = [
     },
     {
         genre: "WHEN",
-        question: [
+        questions: [
             {
                 question: "When did it snow?",
                 answers: ["Today, Last Week"],
@@ -73,7 +73,7 @@ const jeopardyCategories = [
     },
     {
         genre: "WHAT",
-        question: [
+        questions: [
             {
                 question: "What do bird eat?",
                 answers: ["Nothing, Worm"],
@@ -96,7 +96,7 @@ const jeopardyCategories = [
     },
     {
         genre: "HOW MANY",
-        question: [
+        questions: [
             {
                 question: "How many seconds in an hour?",
                 answers: ["36000, 3600"],
@@ -138,6 +138,23 @@ function addCatergory(category) {
 
     // Insert category to HTML
     game.append(column);
+
+    category.questions.forEach(question => {
+        // Create div element for card
+        const card = document.createElement("div");
+        card.classList.add("card");
+        column.append(card);
+
+        if (question.level === "easy") {
+            card.innerText = 100;
+        }
+        if (question.level === "medium") {
+            card.innerText = 200;
+        }
+        if (question.level === "hard") {
+            card.innerText = 300;
+        }
+    })
 }
 
 jeopardyCategories.forEach(category => addCatergory(category));
