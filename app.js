@@ -118,3 +118,26 @@ const jeopardyCategories = [
         ]
     }
 ];
+
+// Create Catergory and add it to HTML
+function addCatergory(category) {
+    // Create div element for column
+    const column = document.createElement("div");
+    // Add styles class name
+    column.classList.add("genre-column");
+
+    // Create div element for Genre Title
+    const genreTitle = document.createElement("div");
+    // Add styles class name
+    genreTitle.classList.add("genre-title");
+    // Set the value for Genre Title
+    genreTitle.innerText = category.genre;
+
+    // Insert Genre Title to Column
+    column.appendChild(genreTitle);
+
+    // Insert category to HTML
+    game.append(column);
+}
+
+jeopardyCategories.forEach(category => addCatergory(category));
