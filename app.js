@@ -154,6 +154,13 @@ function addCatergory(category) {
         if (question.level === "hard") {
             card.innerText = 300;
         }
+
+        // Add attributes to card
+        card.setAttribute("data-question", question.question);
+        card.setAttribute("data-answer-1", question.answers[0]);
+        card.setAttribute("data-answer-2", question.answers[1]);
+        card.setAttribute("data-correct", question.correct);
+        card.setAttribute("data-value", card.getInnerHTML());
     })
 }
 
