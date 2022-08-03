@@ -119,6 +119,8 @@ const jeopardyCategories = [
     }
 ];
 
+let score = 0;
+
 // Create Catergory and add it to HTML
 function addCatergory(category) {
     // Create div element for column
@@ -188,9 +190,22 @@ function flipCard() {
     firstButton.innerHTML = this.getAttribute("data-answer-1");
     secondButton.innerHTML = this.getAttribute("data-answer-2");
 
+    firstButton.addEventListener("click", getResult);
+    secondButton.addEventListener("click", getResult);
+
     this.append(textDisplay, firstButton, secondButton);
 
     // Disable flipping other cards
     const allCards = Array.from(document.querySelectorAll(".card"));
     allCards.forEach(card => card.removeEventListener("click", flipCard));
+}
+
+function getResult() {
+    const cardOfButton = this.parentElement;
+
+    // If correct, earn points
+    if(cardOfButton.getAttribute("data-correct") == this.innerHTML) {
+        score = score + parseInt(cardOfButton.getAttribute("data-value"));
+        scoreDisplay.innerHTML = score;
+    }
 }
