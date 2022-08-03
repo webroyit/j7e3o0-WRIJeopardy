@@ -189,4 +189,8 @@ function flipCard() {
     secondButton.innerHTML = this.getAttribute("data-answer-2");
 
     this.append(textDisplay, firstButton, secondButton);
+
+    // Disable flipping other cards
+    const allCards = Array.from(document.querySelectorAll(".card"));
+    allCards.forEach(card => card.removeEventListener("click", flipCard));
 }
