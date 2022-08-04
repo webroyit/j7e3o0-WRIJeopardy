@@ -201,11 +201,38 @@ function flipCard() {
 }
 
 function getResult() {
+    // Enable flipping
+    const allCards = Array.from(document.querySelectorAll(".card"));
+    allCards.forEach(card => card.addEventListener("click", flipCard));
+
     const cardOfButton = this.parentElement;
 
     // If correct, earn points
     if(cardOfButton.getAttribute("data-correct") == this.innerHTML) {
         score = score + parseInt(cardOfButton.getAttribute("data-value"));
         scoreDisplay.innerHTML = score;
+        cardOfButton.classList.add("correct-answer");
+
+        // Remove the question and answers
+        setTimeout(() => {
+            while (cardOfButton.firstChild) {
+                cardOfButton.removeChild(cardOfButton.lastChild);
+            }
+            // Show score of earn point
+            cardOfButton.innerHTML = cardOfButton.getAttribute("data-value");
+        }, 100);
+    } else {
+        cardOfButton.classList.add("wrong-answer");
+
+        // Remove the question and answers
+        setTimeout(() => {
+            while (cardOfButton.firstChild) {
+                cardOfButton.removeChild(cardOfButton.lastChild);
+            }
+            // Show score of zero
+            cardOfButton.innerHTML = 0;
+        }, 100);
     }
+
+    cardOfButton.removeEventListener("click", flipCard);
 }

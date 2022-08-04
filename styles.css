@@ -46,3 +46,11 @@ body {
     padding: 5px;
     margin: 5px;
 }
+
+.correct-answer {
+    background-color: rgb(38, 179, 49);
+}
+
+.wrong-answer {
+    background-color: rgb(200, 59, 66);
+}
